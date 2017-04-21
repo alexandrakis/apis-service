@@ -26,9 +26,9 @@ class CreditTransferRequest extends AbstractRequest {
     String clearingSystem
     String transactionId
     String endToendId
-    String valueDate
+    Date valueDate
     String currency
-    String amount
+    Double amount
     String chargeBearer
 
     String debtorName
@@ -55,10 +55,10 @@ class DirectDebitRequest extends AbstractRequest {
     String nameEnquiryRef
     String transactionId
     String endToendId
-    String valueDate
+    Date valueDate
     String categoryPurpose
     String currency
-    String amount
+    Double amount
     String instructedAmount
     String transactionFee
     String chargeBearer
@@ -88,7 +88,7 @@ class AmountBlockUnblockRequest extends AbstractRequest {
 
     String reasonCode
     String remittanceInformation
-    String amount
+    Double amount
     String type
 }
 
@@ -109,7 +109,7 @@ class FinancialInstitutionRequest extends AbstractRequest {
 }
 
 class MandateAdviceRequest extends AbstractRequest {
-    String amount
+    Double amount
     String mandateReference
 
     String debtorName
