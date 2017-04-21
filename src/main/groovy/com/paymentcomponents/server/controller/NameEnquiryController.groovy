@@ -5,7 +5,6 @@ import com.paymentcomponents.server.domain.NameEnquiryResponse
 import com.paymentcomponents.server.service.NameEnquiryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
-import org.springframework.web.client.RestTemplate
 
 /**
  * Created by apolichronopoulos on 19/04/2017.
@@ -15,15 +14,8 @@ import org.springframework.web.client.RestTemplate
 @RequestMapping("/name/enquiry")
 class NameEnquiryController extends AbstractApiController {
 
-    private final RestTemplate restTemplate
-
     @Autowired
     NameEnquiryService nameEnquiryService
-
-    @Autowired
-    NameEnquiryController(RestTemplate restTemplate) {
-        this.restTemplate = restTemplate
-    }
 
     @RequestMapping(method = RequestMethod.POST)
     public @ResponseBody

@@ -12,8 +12,12 @@ import org.springframework.stereotype.Service
 @Service
 class NameEnquiryService {
 
-    public def getNameEnquiry(NameEnquiryRequest request) {
+    public def getNameEnquiry(NameEnquiryRequest request) throws Exception {
         def response = new NameEnquiryResponse(CommonUtils.getBindProperties(request))
+        response.accountName = "Ajibade Oluwasegun"
+        response.bankVerificationNumber = "1033000441"
+        response.kycLevel = "1"
+        response.responseCode = "00"
         return response
     }
 

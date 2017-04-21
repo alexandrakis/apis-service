@@ -15,12 +15,12 @@ import org.springframework.web.client.RestTemplate
  * Created by apolichronopoulos on 19/04/2017.
  */
 @RestController
-class ApiController extends AbstractApiController {
+class TestApiController extends AbstractApiController {
 
     private final RestTemplate restTemplate
 
     @Autowired
-    ApiController(RestTemplate restTemplate) {
+    TestApiController(RestTemplate restTemplate) {
         this.restTemplate = restTemplate
     }
 
