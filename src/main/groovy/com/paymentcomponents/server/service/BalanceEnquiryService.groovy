@@ -1,7 +1,7 @@
 package com.paymentcomponents.server.service
 
-import com.paymentcomponents.server.domain.BalanceEnquiryRequest
-import com.paymentcomponents.server.domain.BalanceEnquiryResponse
+import com.paymentcomponents.common.models.response.api.BalanceEnquiryResponse
+import com.paymentcomponents.common.request.api.BalanceEnquiryRequest
 import com.paymentcomponents.server.utils.CommonUtils
 import org.springframework.stereotype.Service
 

@@ -1,7 +1,7 @@
 package com.paymentcomponents.server.service
 
-import com.paymentcomponents.server.domain.NameEnquiryRequest
-import com.paymentcomponents.server.domain.NameEnquiryResponse
+import com.paymentcomponents.common.models.response.api.NameEnquiryResponse
+import com.paymentcomponents.common.request.api.NameEnquiryRequest
 import com.paymentcomponents.server.utils.CommonUtils
 import org.springframework.stereotype.Service
 

@@ -1,7 +1,7 @@
 package com.paymentcomponents.server.controller
 
-import com.paymentcomponents.server.domain.BalanceEnquiryRequest
-import com.paymentcomponents.server.domain.BalanceEnquiryResponse
+import com.paymentcomponents.common.models.response.api.BalanceEnquiryResponse
+import com.paymentcomponents.common.request.api.BalanceEnquiryRequest
 import com.paymentcomponents.server.service.BalanceEnquiryService
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.web.bind.annotation.*
