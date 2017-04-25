@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/name/enquiry")
-class NameEnquiryController extends AbstractApiController {
+class NameEnquiryController {
 
     @Autowired
     NameEnquiryService nameEnquiryService

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*
 
 @RestController
 @RequestMapping("/balance/enquiry")
-class BalanceEnquiryController extends AbstractApiController {
+class BalanceEnquiryController {
 
     @Autowired
     BalanceEnquiryService balanceEnquiryService
