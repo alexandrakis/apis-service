@@ -19,6 +19,9 @@ class CreditTransfer {
     @Size(max = 3, min = 3)
     String instructingInstitutionCode
     @NotNull
+    @Size(max = 3, min = 3)
+    String instructedInstitutionCode
+    @NotNull
     int channelCode
     @NotNull
     @Size(max = 100)
@@ -46,9 +49,10 @@ class CreditTransfer {
     CreditTransfer() {
     }
 
-    CreditTransfer(String requestId, String instructingInstitutionCode, int channelCode, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String creditorPhoneNumber, String transactionLocation, String endToEndId, String transactionId, String remittanceInformation) {
+    CreditTransfer(String requestId, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String creditorPhoneNumber, String transactionLocation, String endToEndId, String transactionId, String remittanceInformation) {
         this.requestId = requestId
         this.instructingInstitutionCode = instructingInstitutionCode
+        this.instructedInstitutionCode = instructedInstitutionCode
         this.channelCode = channelCode
         this.debtorName = debtorName
         this.debtorAccount = debtorAccount
@@ -83,6 +87,14 @@ class CreditTransfer {
 
     void setInstructingInstitutionCode(String instructingInstitutionCode) {
         this.instructingInstitutionCode = instructingInstitutionCode
+    }
+
+    String getInstructedInstitutionCode() {
+        return instructedInstitutionCode
+    }
+
+    void setInstructedInstitutionCode(String instructedInstitutionCode) {
+        this.instructedInstitutionCode = instructedInstitutionCode
     }
 
     int getChannelCode() {
@@ -172,6 +184,7 @@ class CreditTransfer {
                 "id=" + id +
                 ", requestId='" + requestId + '\'' +
                 ", instructingInstitutionCode='" + instructingInstitutionCode + '\'' +
+                ", instructedInstitutionCode='" + instructedInstitutionCode + '\'' +
                 ", channelCode=" + channelCode +
                 ", debtorName='" + debtorName + '\'' +
                 ", debtorAccount='" + debtorAccount + '\'' +

@@ -7,6 +7,7 @@ CREATE TABLE public.credit_transfer
     id SERIAL PRIMARY KEY NOT NULL,
     request_id VARCHAR(30) NOT NULL,
     instructing_institution_code CHAR(3) NOT NULL,
+    instructed_institution_code CHAR(3) NOT NULL,
     channel_code INT NOT NULL,
     debtor_name VARCHAR(100) NOT NULL,
     debtor_account VARCHAR(20) NOT NULL,
@@ -20,5 +21,4 @@ CREATE TABLE public.credit_transfer
 );
 CREATE UNIQUE INDEX credit_transfer_id_uindex ON public.credit_transfer (id);
 CREATE UNIQUE INDEX credit_transfer_request_id_uindex ON public.credit_transfer (request_id);
-
 ```
