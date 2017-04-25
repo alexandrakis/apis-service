@@ -27,7 +27,7 @@ class CreditTransferController {
     @RequestMapping(value = "/v1/credit/transfer", method = RequestMethod.POST, consumes = "application/json", produces = "application/json")
     @ApiOperation(value = "saveCreditTransfer", notes = "Initiate credit transfer.")
     @ApiResponses([
-            @ApiResponse(code = 204, message = "OK"),
+            @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 400, message = "Bad Request", response = Error.class),
             @ApiResponse(code = 500, message = "Internal Server Error", response = Error.class)
     ])

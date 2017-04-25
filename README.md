@@ -2,7 +2,7 @@
 
 ## Create DB Statements
 ```
-CREATE TABLE wasp_db.credit_transfer
+CREATE TABLE public.credit_transfer
 (
     id SERIAL PRIMARY KEY NOT NULL,
     request_id VARCHAR(30) NOT NULL,
@@ -15,9 +15,10 @@ CREATE TABLE wasp_db.credit_transfer
     creditor_phone_number VARCHAR(20),
     transaction_location VARCHAR(30),
     end_to_end_id VARCHAR(35),
-    transaction_id VARCHAR(500),
+    transaction_id VARCHAR(35),
     remittance_information VARCHAR(500)
 );
-CREATE UNIQUE INDEX credit_transfer_id_uindex ON wasp_db.credit_transfer (id);
-CREATE UNIQUE INDEX credit_transfer_request_id_uindex ON wasp_db.credit_transfer (request_id);
+CREATE UNIQUE INDEX credit_transfer_id_uindex ON public.credit_transfer (id);
+CREATE UNIQUE INDEX credit_transfer_request_id_uindex ON public.credit_transfer (request_id);
+
 ```

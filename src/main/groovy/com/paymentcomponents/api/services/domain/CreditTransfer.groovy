@@ -1,10 +1,8 @@
 package com.paymentcomponents.api.services.domain
 
-import javax.persistence.Entity
-import javax.persistence.GeneratedValue
-import javax.persistence.Id
-import javax.persistence.Table
+import javax.persistence.*
 import javax.validation.constraints.NotNull
+import javax.validation.constraints.Size
 
 /**
  * Created by aalexandrakis on 25/04/2017.
@@ -13,26 +11,36 @@ import javax.validation.constraints.NotNull
 @Table(name = "credit_transfer")
 class CreditTransfer {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id
     @NotNull
     String requestId
     @NotNull
+    @Size(max = 3, min = 3)
     String instructingInstitutionCode
     @NotNull
     int channelCode
     @NotNull
+    @Size(max = 100)
     String debtorName
     @NotNull
+    @Size(max = 20)
     String debtorAccount
     @NotNull
+    @Size(max = 100)
     String creditorName
     @NotNull
+    @Size(max = 20)
     String creditorAccount
+    @Size(max = 20)
     String creditorPhoneNumber
+    @Size(max = 30)
     String transactionLocation
+    @Size(max = 35)
     String endToEndId
+    @Size(max = 35)
     String transactionId
+    @Size(max = 500)
     String remittanceInformation
 
     CreditTransfer() {
