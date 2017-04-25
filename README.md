@@ -40,6 +40,20 @@ Default properties are the following. If you want to override some or all defaul
 ```
 spring.application.name=apis-services
 server.port=8080
+#Data Source
+spring.datasource.url=jdbc:postgresql://192.168.101.6:5432/wasp_db
+spring.jpa.database-platform=POSTGRESQL
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.PostgreSQL94Dialect
+spring.jpa.properties.hibernate.default_scheme=public
+spring.datasource.username=postgres
+spring.datasource.password=Asd123!.
+spring.datasource.driver-class-name=org.postgresql.Driver
+#Number of ms to wait before throwing an exception if no connection is available.
+spring.datasource.tomcat.max-wait=10000
+#Maximum number of active connections that can be allocated from this pool at the same time.
+spring.datasource.tomcat.max-active=50
+#JPA
+spring.jpa.show-sql=true
 #Registry
 eureka.client.service-url.defaultZone= http://192.168.101.6:9010/eureka/
 eureka.instance.prefer-ip-address=true
