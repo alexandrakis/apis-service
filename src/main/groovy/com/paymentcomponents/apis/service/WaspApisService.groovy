@@ -1,4 +1,4 @@
-package com.paymentcomponents.api.services
+package com.paymentcomponents.apis.service
 
 import com.google.common.base.Predicate
 import org.springframework.boot.SpringApplication

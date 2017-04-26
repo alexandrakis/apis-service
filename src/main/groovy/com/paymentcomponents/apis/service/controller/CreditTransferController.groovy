@@ -1,6 +1,6 @@
-package com.paymentcomponents.api.services.controller
+package com.paymentcomponents.apis.service.controller
 
-import com.paymentcomponents.api.services.service.CreditTransferService
+import com.paymentcomponents.apis.service.service.CreditTransferService
 import com.paymentcomponents.common.log.RequestLogger
 import com.paymentcomponents.common.request.CreditTransferRequest
 import com.paymentcomponents.common.response.Error

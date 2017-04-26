@@ -1,6 +1,8 @@
-package com.paymentcomponents.api.services.controller
+package com.paymentcomponents.apis.service.controller
 
 import com.fasterxml.jackson.databind.ObjectMapper
+import com.paymentcomponents.apis.service.ERROR_CODES
+import com.paymentcomponents.apis.service.exceptions.WaspApiValidationException
 import com.paymentcomponents.common.log.RequestLogger
 import com.paymentcomponents.common.response.Error
 import org.postgresql.util.PSQLException
@@ -12,7 +14,6 @@ import org.springframework.web.client.HttpClientErrorException
 
 import javax.servlet.http.HttpServletRequest
 import java.sql.SQLException
-
 /**
  * Created by aalexandrakis on 25/04/2017.
  */
@@ -24,7 +25,7 @@ class ExceptionController {
     public def sqlErrorHandler(HttpServletRequest req, SQLException e) {
         logger.error("Failed SQL Action", req, null, null, e)
         ObjectMapper objectMapper = new ObjectMapper()
-        Error error = new Error("internal_error", e.getMessage())
+        Error error = new Error(ERROR_CODES.internal_error.toString(), e.getMessage())
         return new ResponseEntity<String>(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(error), HttpStatus.BAD_REQUEST);
     }
 
@@ -32,7 +33,7 @@ class ExceptionController {
     public def postgresErrorHandler(HttpServletRequest req, PSQLException e) {
         logger.error("Failed PSQL Action", req, null, null, e)
         ObjectMapper objectMapper = new ObjectMapper()
-        Error error = new Error("internal_error", e.getMessage())
+        Error error = new Error(ERROR_CODES.internal_error.toString(), e.getMessage())
         return new ResponseEntity<String>(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(error), HttpStatus.BAD_REQUEST);
     }
 
@@ -44,16 +45,23 @@ class ExceptionController {
         try {
             error = objectMapper.readValue(e.getResponseBodyAsString(), Error.class)
         } catch (Exception ex) {
-            error = new Error("internal_error", e.getMessage())
+            error = new Error(ERROR_CODES.internal_error.toString(), e.getMessage())
         }
         return new ResponseEntity<String>(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(error), e.statusCode);
+    }
+
+    @ExceptionHandler(WaspApiValidationException.class)
+    public def waspValidationErrorHandler(HttpServletRequest req, WaspApiValidationException e) {
+        logger.error("Failed Request", req, null, null, e)
+        ObjectMapper objectMapper = new ObjectMapper()
+        return new ResponseEntity<String>(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(new Error(e.errorCode, e.errorDescription)), HttpStatus.BAD_REQUEST);
     }
 
 
     @ExceptionHandler(Exception.class)
     public def genericErrorHandler(HttpServletRequest req, Exception e) {
         logger.error("Failed Request", req, null, null, e)
-        Error error = new Error("internal_error", e.getMessage())
+        Error error = new Error(ERROR_CODES.internal_error.toString(), e.getMessage())
         return new ResponseEntity<String>(new ObjectMapper().writerWithDefaultPrettyPrinter().writeValueAsString(error), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 }

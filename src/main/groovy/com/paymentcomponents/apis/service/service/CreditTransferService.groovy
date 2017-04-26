@@ -1,8 +1,9 @@
-package com.paymentcomponents.api.services.service
+package com.paymentcomponents.apis.service.service
 
-import com.paymentcomponents.api.services.domain.CreditTransfer
-import com.paymentcomponents.api.services.exceptions.WaspApiValidationException
-import com.paymentcomponents.api.services.repository.CreditTransferRepository
+import com.paymentcomponents.apis.service.ERROR_CODES
+import com.paymentcomponents.apis.service.domain.CreditTransfer
+import com.paymentcomponents.apis.service.exceptions.WaspApiValidationException
+import com.paymentcomponents.apis.service.repository.CreditTransferRepository
 import com.paymentcomponents.common.Utils
 import com.paymentcomponents.common.request.CreditTransferRequest
 import org.springframework.beans.factory.annotation.Autowired
@@ -30,7 +31,7 @@ class CreditTransferService {
             creditTransfer = Utils.getObjectProperties(request) as CreditTransfer
             creditTransfer.id = null
         } catch (Exception ex) {
-            throw new WaspApiValidationException("invalid_request")
+            throw new WaspApiValidationException(ERROR_CODES.invalid_request.toString(), ex.getMessage())
         }
         //Pairing
         //Storing
