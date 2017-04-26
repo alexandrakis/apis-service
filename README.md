@@ -32,14 +32,15 @@ Start a docker container from the image
 ```
 docker run -it -d -p 9055:8080 \
 -v /etc/timezone:/etc/timezone \
--v /home/teamcity/apps_properties/wasp_api_services:/properties/ \
--v /home/teamcity/apps_logs/wasp_api_services:/var/log/ \
+-v /home/teamcity/apps_properties/wasp_apis_service:/properties/ \
+-v /home/teamcity/apps_logs/wasp_apis_service:/var/log/ \
 --name wasp-apis-service wasp/apis-service
 ```
 Default properties are the following. If you want to override some or all default properties create a property file with the parameters you want to override and run the java jar with this environment property ```--spring.config.location=/properties/application.properties```.
 ```
 spring.application.name=apis-service
 server.port=8080
+
 #Data Source
 spring.datasource.url=jdbc:postgresql://192.168.101.6:5432/wasp_db
 spring.jpa.database-platform=POSTGRESQL
@@ -48,22 +49,27 @@ spring.jpa.properties.hibernate.default_scheme=public
 spring.datasource.username=postgres
 spring.datasource.password=Asd123!.
 spring.datasource.driver-class-name=org.postgresql.Driver
+
 #Number of ms to wait before throwing an exception if no connection is available.
 spring.datasource.tomcat.max-wait=10000
 #Maximum number of active connections that can be allocated from this pool at the same time.
 spring.datasource.tomcat.max-active=50
+
 #JPA
 spring.jpa.show-sql=true
+
 #Registry
 eureka.client.service-url.defaultZone= http://192.168.101.6:9010/eureka/
 eureka.instance.prefer-ip-address=true
 eureka.instance.ip-address=192.168.101.6
-eureka.instance.non-secure-port=9020
-eureka.instance.metadataMap.instanceId=${spring.application.name}:9020
+eureka.instance.non-secure-port=9055
+eureka.instance.metadataMap.instanceId=${spring.application.name}:9055
+
 #Zipkin
 spring.zipkin.enabled=true
 spring.zipkin.baseUrl=http://192.168.101.6:9012
 
+#LOGGING
 logging.level.root=INFO
 logging.level.org.springframework.web=INFO
 logging.level.org.hibernate=INFO
