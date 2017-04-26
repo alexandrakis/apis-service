@@ -3,7 +3,10 @@ package com.paymentcomponents.api.services
 import com.google.common.base.Predicate
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
+import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 import org.springframework.cloud.client.loadbalancer.LoadBalanced
+import org.springframework.cloud.netflix.zuul.EnableZuulProxy
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
@@ -18,13 +21,13 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2
 import static com.google.common.base.Predicates.or
 import static springfox.documentation.builders.PathSelectors.regex
 
-//@EnableDiscoveryClient
-//@EnableZuulProxy
-//@EnableCircuitBreaker
+@EnableDiscoveryClient
+@EnableZuulProxy
+@EnableCircuitBreaker
 @SpringBootApplication
 @Configuration
 @EnableSwagger2
-class WaspApiServices {
+class WaspApisService {
 
     @Bean
     @LoadBalanced
@@ -64,6 +67,6 @@ class WaspApiServices {
     }
 
     static void main(String[] args) {
-        SpringApplication.run WaspApiServices, args
+        SpringApplication.run WaspApisService, args
     }
 }

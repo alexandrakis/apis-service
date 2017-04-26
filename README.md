@@ -26,7 +26,7 @@ CREATE UNIQUE INDEX credit_transfer_request_id_uindex ON public.credit_transfer 
 ## Installation instructions
 Build a docker image from [here](./Dockerfile)
 ```
-docker build -t wasp/api-services .
+docker build -t wasp/apis-service .
 ```
 Start a docker container from the image
 ```
@@ -34,11 +34,11 @@ docker run -it -d -p 9055:8080 \
 -v /etc/timezone:/etc/timezone \
 -v /home/teamcity/apps_properties/wasp_api_services:/properties/ \
 -v /home/teamcity/apps_logs/wasp_api_services:/var/log/ \
---name wasp-api-services wasp/app-services
+--name wasp-apis-service wasp/apis-service
 ```
 Default properties are the following. If you want to override some or all default properties create a property file with the parameters you want to override and run the java jar with this environment property ```--spring.config.location=/properties/application.properties```.
 ```
-spring.application.name=apis-services
+spring.application.name=apis-service
 server.port=8080
 #Data Source
 spring.datasource.url=jdbc:postgresql://192.168.101.6:5432/wasp_db
