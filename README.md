@@ -2,7 +2,7 @@
 
 ## Create DB Statements
 ```
-CREATE TABLE public.credit_transfer
+CREATE TABLE public.credit_transfers
 (
     id SERIAL PRIMARY KEY NOT NULL,
     request_id VARCHAR(30) NOT NULL,
@@ -19,8 +19,8 @@ CREATE TABLE public.credit_transfer
     transaction_id VARCHAR(35),
     remittance_information VARCHAR(500)
 );
-CREATE UNIQUE INDEX credit_transfer_id_uindex ON public.credit_transfer (id);
-CREATE UNIQUE INDEX credit_transfer_request_id_uindex ON public.credit_transfer (request_id);
+CREATE UNIQUE INDEX credit_transfers_id_uindex ON public.credit_transfers (id);
+CREATE UNIQUE INDEX credit_transfers_request_id_uindex ON public.credit_transfers (request_id);
 ```
 
 ## Installation instructions

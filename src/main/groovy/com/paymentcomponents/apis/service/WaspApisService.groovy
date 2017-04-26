@@ -3,10 +3,8 @@ package com.paymentcomponents.apis.service
 import com.google.common.base.Predicate
 import org.springframework.boot.SpringApplication
 import org.springframework.boot.autoconfigure.SpringBootApplication
-import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker
 import org.springframework.cloud.client.discovery.EnableDiscoveryClient
 import org.springframework.cloud.client.loadbalancer.LoadBalanced
-import org.springframework.cloud.netflix.zuul.EnableZuulProxy
 import org.springframework.context.annotation.Bean
 import org.springframework.context.annotation.Configuration
 import org.springframework.http.client.HttpComponentsClientHttpRequestFactory
@@ -22,8 +20,6 @@ import static com.google.common.base.Predicates.or
 import static springfox.documentation.builders.PathSelectors.regex
 
 @EnableDiscoveryClient
-@EnableZuulProxy
-@EnableCircuitBreaker
 @SpringBootApplication
 @Configuration
 @EnableSwagger2

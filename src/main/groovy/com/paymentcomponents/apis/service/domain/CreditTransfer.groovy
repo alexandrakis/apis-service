@@ -8,7 +8,7 @@ import javax.validation.constraints.Size
  * Created by aalexandrakis on 25/04/2017.
  */
 @Entity
-@Table(name = "credit_transfer")
+@Table(name = "credit_transfers")
 class CreditTransfer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
