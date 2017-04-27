@@ -5,7 +5,7 @@ import com.paymentcomponents.apis.service.ERROR_CODES
 import com.paymentcomponents.apis.service.exceptions.WaspApiValidationException
 import com.paymentcomponents.common.log.RequestLogger
 import com.paymentcomponents.common.response.Error
-import org.postgresql.util.PSQLException
+import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.ControllerAdvice
@@ -14,6 +14,7 @@ import org.springframework.web.client.HttpClientErrorException
 
 import javax.servlet.http.HttpServletRequest
 import java.sql.SQLException
+
 /**
  * Created by aalexandrakis on 25/04/2017.
  */
@@ -23,15 +24,15 @@ class ExceptionController {
 
     @ExceptionHandler(SQLException.class)
     public def sqlErrorHandler(HttpServletRequest req, SQLException e) {
-        logger.error("Failed SQL Action", req, null, null, e)
+        logger.error("Failed SQL Action", req)
         ObjectMapper objectMapper = new ObjectMapper()
         Error error = new Error(ERROR_CODES.internal_error.toString(), e.getMessage())
         return new ResponseEntity<String>(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(error), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(PSQLException.class)
-    public def postgresErrorHandler(HttpServletRequest req, PSQLException e) {
-        logger.error("Failed PSQL Action", req, null, null, e)
+    @ExceptionHandler(DataIntegrityViolationException.class)
+    public def postgresErrorHandler(HttpServletRequest req, DataIntegrityViolationException e) {
+        logger.error("Failed SQL Action", req)
         ObjectMapper objectMapper = new ObjectMapper()
         Error error = new Error(ERROR_CODES.internal_error.toString(), e.getMessage())
         return new ResponseEntity<String>(objectMapper.writerWithDefaultPrettyPrinter().writeValueAsString(error), HttpStatus.BAD_REQUEST);
