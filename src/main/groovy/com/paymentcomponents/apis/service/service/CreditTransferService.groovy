@@ -25,17 +25,14 @@ class CreditTransferService {
     }
 
     public void creditTransfer(CreditTransferRequest request) throws Exception {
-        CreditTransfer creditTransfer
-        //Validate
         try {
+            CreditTransfer creditTransfer
             creditTransfer = Utils.getObjectProperties(request) as CreditTransfer
             creditTransfer.id = null
+            creditTransferRepository.save(creditTransfer)
         } catch (Exception ex) {
             throw new WaspApiValidationException(ERROR_CODES.invalid_request.toString(), ex.getMessage())
         }
-        //Pairing
-        //Storing
-        creditTransferRepository.save(creditTransfer)
     }
 
 }
