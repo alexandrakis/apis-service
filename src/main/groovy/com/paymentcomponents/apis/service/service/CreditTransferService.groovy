@@ -29,6 +29,7 @@ class CreditTransferService {
             CreditTransfer creditTransfer
             creditTransfer = Utils.getObjectProperties(request) as CreditTransfer
             creditTransfer.id = null
+            creditTransfer.creationDateTime = new Date()
             creditTransferRepository.save(creditTransfer)
         } catch (Exception ex) {
             throw new WaspApiValidationException(ERROR_CODES.invalid_request.toString(), ex.getMessage())

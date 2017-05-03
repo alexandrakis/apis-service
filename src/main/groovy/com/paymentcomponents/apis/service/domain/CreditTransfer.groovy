@@ -16,6 +16,7 @@ class CreditTransfer {
     @NotNull
     @Size(max = 30)
     String requestId
+    Date creationDateTime
     @NotNull
     @Size(max = 3, min = 3)
     String instructingInstitutionCode
@@ -44,21 +45,29 @@ class CreditTransfer {
     @Size(max = 100)
     String debtorName
     @NotNull
-    @Size(max = 20)
+    @Size(max = 35)
     String debtorAccount
     @NotNull
     @Size(max = 100)
     String creditorName
     @NotNull
-    @Size(max = 20)
+    @Size(max = 35)
     String creditorAccount
-    // ------ OPTIONAL FIELDS ------------
+
+    // Optional fields --------------
+
     @Size(max = 20)
-    String creditorPhoneNumber
-    @Size(max = 4)
-    String categoryPurpose
+    String debtorBankVerificationNumber
+    @Size(max = 20)
+    String creditorBankVerificationNumber
     Double chargesAmount
     Double instructedAmount
+    @Size(max = 30)
+    String nameEnquiryReference
+    @Size(max = 4)
+    String categoryPurpose
+    @Size(max = 4)
+    String priority
     @Size(max = 30)
     String transactionLocationLong
     @Size(max = 30)
@@ -69,8 +78,9 @@ class CreditTransfer {
     CreditTransfer() {
     }
 
-    CreditTransfer(String requestId, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String transactionId, String endToEndId, Date valueDate, String currency, Double amount, String chargeBearer, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String creditorPhoneNumber, String categoryPurpose, Double chargesAmount, Double instructedAmount, String transactionLocationLong, String transactionLocationLat, String remittanceInformation) {
+    CreditTransfer(String requestId, Date creationDateTime, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String transactionId, String endToEndId, Date valueDate, String currency, Double amount, String chargeBearer, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String debtorBankVerificationNumber, String creditorBankVerificationNumber, Double chargesAmount, Double instructedAmount, String nameEnquiryReference, String categoryPurpose, String priority, String transactionLocationLong, String transactionLocationLat, String remittanceInformation) {
         this.requestId = requestId
+        this.creationDateTime = creationDateTime
         this.instructingInstitutionCode = instructingInstitutionCode
         this.instructedInstitutionCode = instructedInstitutionCode
         this.channelCode = channelCode
@@ -84,13 +94,32 @@ class CreditTransfer {
         this.debtorAccount = debtorAccount
         this.creditorName = creditorName
         this.creditorAccount = creditorAccount
-        this.creditorPhoneNumber = creditorPhoneNumber
-        this.categoryPurpose = categoryPurpose
+        this.debtorBankVerificationNumber = debtorBankVerificationNumber
+        this.creditorBankVerificationNumber = creditorBankVerificationNumber
         this.chargesAmount = chargesAmount
         this.instructedAmount = instructedAmount
+        this.nameEnquiryReference = nameEnquiryReference
+        this.categoryPurpose = categoryPurpose
+        this.priority = priority
         this.transactionLocationLong = transactionLocationLong
         this.transactionLocationLat = transactionLocationLat
         this.remittanceInformation = remittanceInformation
+    }
+
+    String getDebtorBankVerificationNumber() {
+        return debtorBankVerificationNumber
+    }
+
+    void setDebtorBankVerificationNumber(String debtorBankVerificationNumber) {
+        this.debtorBankVerificationNumber = debtorBankVerificationNumber
+    }
+
+    String getCreditorBankVerificationNumber() {
+        return creditorBankVerificationNumber
+    }
+
+    void setCreditorBankVerificationNumber(String creditorBankVerificationNumber) {
+        this.creditorBankVerificationNumber = creditorBankVerificationNumber
     }
 
     Long getId() {
@@ -107,6 +136,14 @@ class CreditTransfer {
 
     void setRequestId(String requestId) {
         this.requestId = requestId
+    }
+
+    Date getCreationDateTime() {
+        return creationDateTime
+    }
+
+    void setCreationDateTime(Date creationDateTime) {
+        this.creationDateTime = creationDateTime
     }
 
     String getInstructingInstitutionCode() {
@@ -213,22 +250,6 @@ class CreditTransfer {
         this.creditorAccount = creditorAccount
     }
 
-    String getCreditorPhoneNumber() {
-        return creditorPhoneNumber
-    }
-
-    void setCreditorPhoneNumber(String creditorPhoneNumber) {
-        this.creditorPhoneNumber = creditorPhoneNumber
-    }
-
-    String getCategoryPurpose() {
-        return categoryPurpose
-    }
-
-    void setCategoryPurpose(String categoryPurpose) {
-        this.categoryPurpose = categoryPurpose
-    }
-
     Double getChargesAmount() {
         return chargesAmount
     }
@@ -243,6 +264,30 @@ class CreditTransfer {
 
     void setInstructedAmount(Double instructedAmount) {
         this.instructedAmount = instructedAmount
+    }
+
+    String getNameEnquiryReference() {
+        return nameEnquiryReference
+    }
+
+    void setNameEnquiryReference(String nameEnquiryReference) {
+        this.nameEnquiryReference = nameEnquiryReference
+    }
+
+    String getCategoryPurpose() {
+        return categoryPurpose
+    }
+
+    void setCategoryPurpose(String categoryPurpose) {
+        this.categoryPurpose = categoryPurpose
+    }
+
+    String getPriority() {
+        return priority
+    }
+
+    void setPriority(String priority) {
+        this.priority = priority
     }
 
     String getTransactionLocationLong() {
@@ -275,6 +320,7 @@ class CreditTransfer {
         return "CreditTransfer{" +
                 "id=" + id +
                 ", requestId='" + requestId + '\'' +
+                ", creationDateTime=" + creationDateTime +
                 ", instructingInstitutionCode='" + instructingInstitutionCode + '\'' +
                 ", instructedInstitutionCode='" + instructedInstitutionCode + '\'' +
                 ", channelCode=" + channelCode +
@@ -288,10 +334,13 @@ class CreditTransfer {
                 ", debtorAccount='" + debtorAccount + '\'' +
                 ", creditorName='" + creditorName + '\'' +
                 ", creditorAccount='" + creditorAccount + '\'' +
-                ", creditorPhoneNumber='" + creditorPhoneNumber + '\'' +
-                ", categoryPurpose='" + categoryPurpose + '\'' +
+                ", debtorBankVerificationNumber='" + debtorBankVerificationNumber + '\'' +
+                ", creditorBankVerificationNumber='" + creditorBankVerificationNumber + '\'' +
                 ", chargesAmount=" + chargesAmount +
                 ", instructedAmount=" + instructedAmount +
+                ", nameEnquiryReference='" + nameEnquiryReference + '\'' +
+                ", categoryPurpose='" + categoryPurpose + '\'' +
+                ", priority='" + priority + '\'' +
                 ", transactionLocationLong='" + transactionLocationLong + '\'' +
                 ", transactionLocationLat='" + transactionLocationLat + '\'' +
                 ", remittanceInformation='" + remittanceInformation + '\'' +
