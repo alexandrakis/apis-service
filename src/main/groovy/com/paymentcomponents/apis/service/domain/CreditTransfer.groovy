@@ -14,6 +14,7 @@ class CreditTransfer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id
     @NotNull
+    @Size(max = 30)
     String requestId
     @NotNull
     @Size(max = 3, min = 3)
@@ -23,6 +24,22 @@ class CreditTransfer {
     String instructedInstitutionCode
     @NotNull
     int channelCode
+    @NotNull
+    @Size(max = 35)
+    String transactionId
+    @NotNull
+    @Size(max = 35)
+    String endToEndId
+    @NotNull
+    Date valueDate
+    @NotNull
+    @Size(max = 3, min = 3)
+    String currency
+    @NotNull
+    Double amount
+    @NotNull
+    @Size(max = 4)
+    String chargeBearer
     @NotNull
     @Size(max = 100)
     String debtorName
@@ -35,33 +52,44 @@ class CreditTransfer {
     @NotNull
     @Size(max = 20)
     String creditorAccount
+    // ------ OPTIONAL FIELDS ------------
     @Size(max = 20)
     String creditorPhoneNumber
+    @Size(max = 4)
+    String categoryPurpose
+    Double chargesAmount
+    Double instructedAmount
     @Size(max = 30)
-    String transactionLocation
-    @Size(max = 35)
-    String endToEndId
-    @Size(max = 35)
-    String transactionId
+    String transactionLocationLong
+    @Size(max = 30)
+    String transactionLocationLat
     @Size(max = 500)
     String remittanceInformation
 
     CreditTransfer() {
     }
 
-    CreditTransfer(String requestId, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String creditorPhoneNumber, String transactionLocation, String endToEndId, String transactionId, String remittanceInformation) {
+    CreditTransfer(String requestId, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String transactionId, String endToEndId, Date valueDate, String currency, Double amount, String chargeBearer, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String creditorPhoneNumber, String categoryPurpose, Double chargesAmount, Double instructedAmount, String transactionLocationLong, String transactionLocationLat, String remittanceInformation) {
         this.requestId = requestId
         this.instructingInstitutionCode = instructingInstitutionCode
         this.instructedInstitutionCode = instructedInstitutionCode
         this.channelCode = channelCode
+        this.transactionId = transactionId
+        this.endToEndId = endToEndId
+        this.valueDate = valueDate
+        this.currency = currency
+        this.amount = amount
+        this.chargeBearer = chargeBearer
         this.debtorName = debtorName
         this.debtorAccount = debtorAccount
         this.creditorName = creditorName
         this.creditorAccount = creditorAccount
         this.creditorPhoneNumber = creditorPhoneNumber
-        this.transactionLocation = transactionLocation
-        this.endToEndId = endToEndId
-        this.transactionId = transactionId
+        this.categoryPurpose = categoryPurpose
+        this.chargesAmount = chargesAmount
+        this.instructedAmount = instructedAmount
+        this.transactionLocationLong = transactionLocationLong
+        this.transactionLocationLat = transactionLocationLat
         this.remittanceInformation = remittanceInformation
     }
 
@@ -105,6 +133,54 @@ class CreditTransfer {
         this.channelCode = channelCode
     }
 
+    String getTransactionId() {
+        return transactionId
+    }
+
+    void setTransactionId(String transactionId) {
+        this.transactionId = transactionId
+    }
+
+    String getEndToEndId() {
+        return endToEndId
+    }
+
+    void setEndToEndId(String endToEndId) {
+        this.endToEndId = endToEndId
+    }
+
+    Date getValueDate() {
+        return valueDate
+    }
+
+    void setValueDate(Date valueDate) {
+        this.valueDate = valueDate
+    }
+
+    String getCurrency() {
+        return currency
+    }
+
+    void setCurrency(String currency) {
+        this.currency = currency
+    }
+
+    Double getAmount() {
+        return amount
+    }
+
+    void setAmount(Double amount) {
+        this.amount = amount
+    }
+
+    String getChargeBearer() {
+        return chargeBearer
+    }
+
+    void setChargeBearer(String chargeBearer) {
+        this.chargeBearer = chargeBearer
+    }
+
     String getDebtorName() {
         return debtorName
     }
@@ -145,28 +221,44 @@ class CreditTransfer {
         this.creditorPhoneNumber = creditorPhoneNumber
     }
 
-    String getTransactionLocation() {
-        return transactionLocation
+    String getCategoryPurpose() {
+        return categoryPurpose
     }
 
-    void setTransactionLocation(String transactionLocation) {
-        this.transactionLocation = transactionLocation
+    void setCategoryPurpose(String categoryPurpose) {
+        this.categoryPurpose = categoryPurpose
     }
 
-    String getEndToEndId() {
-        return endToEndId
+    Double getChargesAmount() {
+        return chargesAmount
     }
 
-    void setEndToEndId(String endToEndId) {
-        this.endToEndId = endToEndId
+    void setChargesAmount(Double chargesAmount) {
+        this.chargesAmount = chargesAmount
     }
 
-    String getTransactionId() {
-        return transactionId
+    Double getInstructedAmount() {
+        return instructedAmount
     }
 
-    void setTransactionId(String transactionId) {
-        this.transactionId = transactionId
+    void setInstructedAmount(Double instructedAmount) {
+        this.instructedAmount = instructedAmount
+    }
+
+    String getTransactionLocationLong() {
+        return transactionLocationLong
+    }
+
+    void setTransactionLocationLong(String transactionLocationLong) {
+        this.transactionLocationLong = transactionLocationLong
+    }
+
+    String getTransactionLocationLat() {
+        return transactionLocationLat
+    }
+
+    void setTransactionLocationLat(String transactionLocationLat) {
+        this.transactionLocationLat = transactionLocationLat
     }
 
     String getRemittanceInformation() {
@@ -186,14 +278,22 @@ class CreditTransfer {
                 ", instructingInstitutionCode='" + instructingInstitutionCode + '\'' +
                 ", instructedInstitutionCode='" + instructedInstitutionCode + '\'' +
                 ", channelCode=" + channelCode +
+                ", transactionId='" + transactionId + '\'' +
+                ", endToEndId='" + endToEndId + '\'' +
+                ", valueDate=" + valueDate +
+                ", currency='" + currency + '\'' +
+                ", amount=" + amount +
+                ", chargeBearer='" + chargeBearer + '\'' +
                 ", debtorName='" + debtorName + '\'' +
                 ", debtorAccount='" + debtorAccount + '\'' +
                 ", creditorName='" + creditorName + '\'' +
                 ", creditorAccount='" + creditorAccount + '\'' +
                 ", creditorPhoneNumber='" + creditorPhoneNumber + '\'' +
-                ", transactionLocation='" + transactionLocation + '\'' +
-                ", endToEndId='" + endToEndId + '\'' +
-                ", transactionId='" + transactionId + '\'' +
+                ", categoryPurpose='" + categoryPurpose + '\'' +
+                ", chargesAmount=" + chargesAmount +
+                ", instructedAmount=" + instructedAmount +
+                ", transactionLocationLong='" + transactionLocationLong + '\'' +
+                ", transactionLocationLat='" + transactionLocationLat + '\'' +
                 ", remittanceInformation='" + remittanceInformation + '\'' +
                 '}';
     }

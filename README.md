@@ -4,20 +4,28 @@
 ```
 CREATE TABLE public.credit_transfers
 (
-    id SERIAL PRIMARY KEY NOT NULL,
-    request_id VARCHAR(30) NOT NULL,
-    instructing_institution_code CHAR(3) NOT NULL,
-    instructed_institution_code CHAR(3) NOT NULL,
-    channel_code INT NOT NULL,
-    debtor_name VARCHAR(100) NOT NULL,
-    debtor_account VARCHAR(20) NOT NULL,
-    creditor_name VARCHAR(100) NOT NULL,
-    creditor_account VARCHAR(20) NOT NULL,
-    creditor_phone_number VARCHAR(20),
-    transaction_location VARCHAR(30),
-    end_to_end_id VARCHAR(35),
-    transaction_id VARCHAR(35),
-    remittance_information VARCHAR(500)
+  id                           SERIAL PRIMARY KEY NOT NULL,
+  request_id                   VARCHAR(30)        NOT NULL,
+  instructing_institution_code CHAR(3)            NOT NULL,
+  instructed_institution_code  CHAR(3)            NOT NULL,
+  channel_code                 INT                NOT NULL,
+  transaction_id               VARCHAR(35)        NOT NULL,
+  end_to_end_id                VARCHAR(35)        NOT NULL,
+  value_date                   TIMESTAMP          NOT NULL,
+  currency                     CHAR(3)            NOT NULL,
+  amount                       DECIMAL            NOT NULL,
+  charge_bearer                CHAR(4)            NOT NULL,
+  debtor_name                  VARCHAR(100)       NOT NULL,
+  debtor_account               VARCHAR(20)        NOT NULL,
+  creditor_name                VARCHAR(100)       NOT NULL,
+  creditor_account             VARCHAR(20)        NOT NULL,
+  creditor_phone_number        VARCHAR(20),
+  category_purpose             CHAR(4),
+  charges_amount               DECIMAL,
+  instructed_amount            DECIMAL,
+  transaction_location_long    VARCHAR(30),
+  transaction_location_lat     VARCHAR(30),
+  remittance_information       VARCHAR(500)
 );
 CREATE UNIQUE INDEX credit_transfers_id_uindex ON public.credit_transfers (id);
 CREATE UNIQUE INDEX credit_transfers_request_id_uindex ON public.credit_transfers (request_id);
