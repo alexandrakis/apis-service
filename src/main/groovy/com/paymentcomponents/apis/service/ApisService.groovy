@@ -23,7 +23,7 @@ import static springfox.documentation.builders.PathSelectors.regex
 @SpringBootApplication
 @Configuration
 @EnableSwagger2
-class WaspApisService {
+class ApisService {
 
     @Bean
     @LoadBalanced
@@ -63,6 +63,6 @@ class WaspApisService {
     }
 
     static void main(String[] args) {
-        SpringApplication.run WaspApisService, args
+        SpringApplication.run ApisService, args
     }
 }
