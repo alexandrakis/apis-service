@@ -74,6 +74,7 @@ class DirectDebit {
     String transactionLocationLat
     @Size(max = 500)
     String remittanceInformation
+    @NotNull
     @Size(max = 30)
     String mandateId
 
