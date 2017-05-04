@@ -29,6 +29,7 @@ class DirectDebitService {
             DirectDebit directDebit
             directDebit = Utils.getObjectProperties(request) as DirectDebit
             directDebit.id = null
+            directDebit.creationDateTime = new Date()
             directDebitRepository.save(directDebit)
         } catch (Exception ex) {
             throw new WaspApiValidationException(ERROR_CODES.invalid_request.toString(), ex.getMessage())

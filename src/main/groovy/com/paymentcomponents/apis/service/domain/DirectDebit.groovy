@@ -16,6 +16,7 @@ class DirectDebit {
     @NotNull
     @Size(max = 30)
     String requestId
+    Date creationDateTime
     @NotNull
     @Size(max = 3, min = 3)
     String instructingInstitutionCode
@@ -44,21 +45,29 @@ class DirectDebit {
     @Size(max = 100)
     String debtorName
     @NotNull
-    @Size(max = 20)
+    @Size(max = 35)
     String debtorAccount
     @NotNull
     @Size(max = 100)
     String creditorName
     @NotNull
-    @Size(max = 20)
+    @Size(max = 35)
     String creditorAccount
-    // ------ OPTIONAL FIELDS ------------
+
+    // Optional fields --------------
+
     @Size(max = 20)
-    String creditorPhoneNumber
-    @Size(max = 4)
-    String categoryPurpose
+    String debtorBankVerificationNumber
+    @Size(max = 20)
+    String creditorBankVerificationNumber
     Double chargesAmount
     Double instructedAmount
+    @Size(max = 30)
+    String nameEnquiryReference
+    @Size(max = 4)
+    String categoryPurpose
+    @Size(max = 4)
+    String priority
     @Size(max = 30)
     String transactionLocationLong
     @Size(max = 30)
@@ -69,31 +78,6 @@ class DirectDebit {
     String mandateId
 
     DirectDebit() {
-    }
-
-    DirectDebit(String requestId, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String transactionId, String endToEndId, Date valueDate, String currency, Double amount, String chargeBearer, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String creditorPhoneNumber, String categoryPurpose, Double chargesAmount, Double instructedAmount, String transactionLocationLong, String transactionLocationLat, String remittanceInformation, String mandateId) {
-        this.requestId = requestId
-        this.instructingInstitutionCode = instructingInstitutionCode
-        this.instructedInstitutionCode = instructedInstitutionCode
-        this.channelCode = channelCode
-        this.transactionId = transactionId
-        this.endToEndId = endToEndId
-        this.valueDate = valueDate
-        this.currency = currency
-        this.amount = amount
-        this.chargeBearer = chargeBearer
-        this.debtorName = debtorName
-        this.debtorAccount = debtorAccount
-        this.creditorName = creditorName
-        this.creditorAccount = creditorAccount
-        this.creditorPhoneNumber = creditorPhoneNumber
-        this.categoryPurpose = categoryPurpose
-        this.chargesAmount = chargesAmount
-        this.instructedAmount = instructedAmount
-        this.transactionLocationLong = transactionLocationLong
-        this.transactionLocationLat = transactionLocationLat
-        this.remittanceInformation = remittanceInformation
-        this.mandateId = mandateId
     }
 
     Long getId() {
@@ -110,6 +94,14 @@ class DirectDebit {
 
     void setRequestId(String requestId) {
         this.requestId = requestId
+    }
+
+    Date getCreationDateTime() {
+        return creationDateTime
+    }
+
+    void setCreationDateTime(Date creationDateTime) {
+        this.creationDateTime = creationDateTime
     }
 
     String getInstructingInstitutionCode() {
@@ -216,20 +208,20 @@ class DirectDebit {
         this.creditorAccount = creditorAccount
     }
 
-    String getCreditorPhoneNumber() {
-        return creditorPhoneNumber
+    String getDebtorBankVerificationNumber() {
+        return debtorBankVerificationNumber
     }
 
-    void setCreditorPhoneNumber(String creditorPhoneNumber) {
-        this.creditorPhoneNumber = creditorPhoneNumber
+    void setDebtorBankVerificationNumber(String debtorBankVerificationNumber) {
+        this.debtorBankVerificationNumber = debtorBankVerificationNumber
     }
 
-    String getCategoryPurpose() {
-        return categoryPurpose
+    String getCreditorBankVerificationNumber() {
+        return creditorBankVerificationNumber
     }
 
-    void setCategoryPurpose(String categoryPurpose) {
-        this.categoryPurpose = categoryPurpose
+    void setCreditorBankVerificationNumber(String creditorBankVerificationNumber) {
+        this.creditorBankVerificationNumber = creditorBankVerificationNumber
     }
 
     Double getChargesAmount() {
@@ -246,6 +238,30 @@ class DirectDebit {
 
     void setInstructedAmount(Double instructedAmount) {
         this.instructedAmount = instructedAmount
+    }
+
+    String getNameEnquiryReference() {
+        return nameEnquiryReference
+    }
+
+    void setNameEnquiryReference(String nameEnquiryReference) {
+        this.nameEnquiryReference = nameEnquiryReference
+    }
+
+    String getCategoryPurpose() {
+        return categoryPurpose
+    }
+
+    void setCategoryPurpose(String categoryPurpose) {
+        this.categoryPurpose = categoryPurpose
+    }
+
+    String getPriority() {
+        return priority
+    }
+
+    void setPriority(String priority) {
+        this.priority = priority
     }
 
     String getTransactionLocationLong() {
@@ -280,11 +296,42 @@ class DirectDebit {
         this.mandateId = mandateId
     }
 
+    DirectDebit(String requestId, Date creationDateTime, String instructingInstitutionCode, String instructedInstitutionCode, int channelCode, String transactionId, String endToEndId, Date valueDate, String currency, Double amount, String chargeBearer, String debtorName, String debtorAccount, String creditorName, String creditorAccount, String debtorBankVerificationNumber, String creditorBankVerificationNumber, Double chargesAmount, Double instructedAmount, String nameEnquiryReference, String categoryPurpose, String priority, String transactionLocationLong, String transactionLocationLat, String remittanceInformation, String mandateId) {
+
+        this.requestId = requestId
+        this.creationDateTime = creationDateTime
+        this.instructingInstitutionCode = instructingInstitutionCode
+        this.instructedInstitutionCode = instructedInstitutionCode
+        this.channelCode = channelCode
+        this.transactionId = transactionId
+        this.endToEndId = endToEndId
+        this.valueDate = valueDate
+        this.currency = currency
+        this.amount = amount
+        this.chargeBearer = chargeBearer
+        this.debtorName = debtorName
+        this.debtorAccount = debtorAccount
+        this.creditorName = creditorName
+        this.creditorAccount = creditorAccount
+        this.debtorBankVerificationNumber = debtorBankVerificationNumber
+        this.creditorBankVerificationNumber = creditorBankVerificationNumber
+        this.chargesAmount = chargesAmount
+        this.instructedAmount = instructedAmount
+        this.nameEnquiryReference = nameEnquiryReference
+        this.categoryPurpose = categoryPurpose
+        this.priority = priority
+        this.transactionLocationLong = transactionLocationLong
+        this.transactionLocationLat = transactionLocationLat
+        this.remittanceInformation = remittanceInformation
+        this.mandateId = mandateId
+    }
+
     @Override
     public String toString() {
         return "DirectDebit{" +
                 "id=" + id +
                 ", requestId='" + requestId + '\'' +
+                ", creationDateTime=" + creationDateTime +
                 ", instructingInstitutionCode='" + instructingInstitutionCode + '\'' +
                 ", instructedInstitutionCode='" + instructedInstitutionCode + '\'' +
                 ", channelCode=" + channelCode +
@@ -298,10 +345,13 @@ class DirectDebit {
                 ", debtorAccount='" + debtorAccount + '\'' +
                 ", creditorName='" + creditorName + '\'' +
                 ", creditorAccount='" + creditorAccount + '\'' +
-                ", creditorPhoneNumber='" + creditorPhoneNumber + '\'' +
-                ", categoryPurpose='" + categoryPurpose + '\'' +
+                ", debtorBankVerificationNumber='" + debtorBankVerificationNumber + '\'' +
+                ", creditorBankVerificationNumber='" + creditorBankVerificationNumber + '\'' +
                 ", chargesAmount=" + chargesAmount +
                 ", instructedAmount=" + instructedAmount +
+                ", nameEnquiryReference='" + nameEnquiryReference + '\'' +
+                ", categoryPurpose='" + categoryPurpose + '\'' +
+                ", priority='" + priority + '\'' +
                 ", transactionLocationLong='" + transactionLocationLong + '\'' +
                 ", transactionLocationLat='" + transactionLocationLat + '\'' +
                 ", remittanceInformation='" + remittanceInformation + '\'' +
